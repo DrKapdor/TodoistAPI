@@ -13,7 +13,7 @@ public class DisplayCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.isOp()) {
+        if (sender.hasPermission("todoistapi.tasks.display") || sender.isOp()) {
             sender.sendMessage("§7§oПодготовка отчёта...");
             Bukkit.getScheduler().runTaskAsynchronously(TodoistApiPlugin.getInstance(), () -> {
                 for (Section section : TodoistApiPlugin.getTodoistApi().getSections()) {

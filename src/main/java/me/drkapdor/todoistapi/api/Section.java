@@ -9,6 +9,12 @@ public class Section {
     private final String name;
     private final LinkedList<Task> tasks;
 
+    /**
+     * Конструктор класса Секции
+     * @param order Порядковый номер секции
+     * @param name Название секции
+     */
+
     public Section(int order, String name) {
         this.order = order;
         this.name = name;
@@ -16,7 +22,7 @@ public class Section {
     }
 
     /**
-     * Получить позицию в списке
+     * Возвращает позицию в списке
      * @return Позиция в списке
      */
 
@@ -25,7 +31,7 @@ public class Section {
     }
 
     /**
-     * Получить имя секции
+     * Возвращает имя секции
      * @return Имя секции
      */
 
@@ -34,7 +40,7 @@ public class Section {
     }
 
     /**
-     * Получить список задач из секции
+     * Возвращает список задач из секции
      * @return Список задач
      */
 

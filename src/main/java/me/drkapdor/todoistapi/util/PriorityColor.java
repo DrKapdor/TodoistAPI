@@ -7,6 +7,12 @@ public enum PriorityColor {
     BLUE("§9"),
     GRAY("§7");
 
+    /**
+     * Возвращает цвет приоритета задачи
+     * @param priority Приоритет
+     * @return Цвет приоритета
+     */
+
     public static PriorityColor of(int priority) {
         switch (priority) {
             case 2: return BLUE;

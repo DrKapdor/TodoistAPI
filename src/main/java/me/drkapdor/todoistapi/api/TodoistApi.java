@@ -28,7 +28,7 @@ public class TodoistApi {
     }
 
     /**
-     * Получить список активных задач
+     * Возвращает список активных задач
      * @return Список активных задач
      */
 
@@ -51,7 +51,10 @@ public class TodoistApi {
                             object.get("section_id").getAsInt());
                     activeTasks.add(task);
                 }
+                //Задачи сортируются по приоритету (в порядке убывания)
                 activeTasks.sort((a, b) -> b.getPriority() - a.getPriority());
+            } else {
+                TodoistApiPlugin.getInstance().getLogger().severe("Не удалось установить соединение с api.todoist.com! Response Code: " + connection.getResponseCode());
             }
         } catch (IOException exception) {
             TodoistApiPlugin.getInstance().getLogger().severe("Не удалось получить список активных задач: " + exception.getMessage());
@@ -59,14 +62,19 @@ public class TodoistApi {
         return activeTasks;
     }
 
+    /**
+     * Возвращает список секций
+     * @return Список секций
+     */
+
     public Collection<Section> getSections() {
         Map<Integer, Section> sectionMap = new HashMap<>();
         for (Task task : getActiveTasks()) {
-            if (sectionMap.containsKey(task.getSectionId()))
-                sectionMap.get(task.getSectionId()).getTasks().add(task);
+            if (sectionMap.containsKey(task.getSectionId())) sectionMap.get(task.getSectionId()).getTasks().add(task);
             else {
                 try {
-                    HttpURLConnection connection = (HttpURLConnection) new URL(SINGLE_SECTION.replace("{id}", String.valueOf(task.getSectionId()))).openConnection();
+                    HttpURLConnection connection = (HttpURLConnection) new URL(SINGLE_SECTION.replace("{id}",
+                            String.valueOf(task.getSectionId()))).openConnection();
                     connection.setRequestMethod("GET");
                     connection.setRequestProperty("User-Agent", "Mozilla/5.0");
                     connection.setRequestProperty("Content-Type", "application/json");
@@ -77,12 +85,15 @@ public class TodoistApi {
                                 response.get("name").getAsString());
                         section.getTasks().add(task);
                         sectionMap.put(task.getSectionId(), section);
+                    } else {
+                        TodoistApiPlugin.getInstance().getLogger().severe("Не удалось установить соединение с api.todoist.com! Response Code: " + connection.getResponseCode());
                     }
                 } catch (IOException exception) {
                     TodoistApiPlugin.getInstance().getLogger().severe("Не удалось получить список секций: " + exception.getMessage());
                 }
             }
         }
+        //Секции сортируются по порядковым номерам (в порядке возрастания)
         List<Section> sections = new ArrayList<>(sectionMap.values());
         sections.sort(Comparator.comparingInt(Section::getOrder));
         return sections;

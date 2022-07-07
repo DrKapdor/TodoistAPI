@@ -8,6 +8,15 @@ public class Task {
     private final int order;
     private final int sectionId;
 
+    /**
+     * Конструктор класса Задачи
+     * @param content Текст задачи
+     * @param description Описание задачи
+     * @param priority Приоритет задачи
+     * @param order Порядковый номер задачи
+     * @param sectionId Идентификатор секции, в которой находится задача
+     */
+
     public Task(String content, String description, int priority, int order, int sectionId) {
         this.content = content;
         this.description = description;
@@ -17,8 +26,8 @@ public class Task {
     }
 
     /**
-     * Получить имя задачи
-     * @return Имя задачи
+     * Возвращает текст задачи
+     * @return Текст задачи
      */
 
     public String getContent() {
@@ -26,7 +35,7 @@ public class Task {
     }
 
     /**
-     * Получить описание задачи
+     * Возвращает описание задачи
      * @return Описание задачи
      */
 
@@ -35,7 +44,7 @@ public class Task {
     }
 
     /**
-     * Получить приоритет задачи
+     * Возвращает приоритет задачи
      * @return Приопритет задачи
      */
 
@@ -44,8 +53,8 @@ public class Task {
     }
 
     /**
-     * Получить позицию в списке
-     * @return Позиция в списке
+     * Возвращает порядковый номер задачи
+     * @return Порядковый номер задачи
      */
 
     public int getOrder() {
@@ -53,14 +62,13 @@ public class Task {
     }
 
     /**
-     * Получить идентификатор секции
+     * Возвращает идентификатор секции
      * @return Идентификатор секции
      */
 
     public int getSectionId() {
         return sectionId;
     }
-
 
     @Override
     public String toString() {

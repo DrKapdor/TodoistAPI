@@ -16,7 +16,7 @@ public class TodoistApiPlugin extends JavaPlugin {
     private static TodoistApi todoistApi;
 
     /**
-     * Получить ссылку на экземпляр главного класса
+     * Возвращает ссылку на экземпляр главного класса
      * @return Ссылка на экземпляр главного класса
      */
 
@@ -25,7 +25,7 @@ public class TodoistApiPlugin extends JavaPlugin {
     }
 
     /**
-     * Получить файл конфигурации
+     * Возвращает файл конфигурации
      * @return Файл конфигурации
      */
 
@@ -43,10 +43,7 @@ public class TodoistApiPlugin extends JavaPlugin {
         return todoistApi;
     }
 
-    /**
-     * Инициализация проекта
-     */
-
+    //Инициализация проекта
     @Override
     public void onEnable() {
         instance = this;
@@ -69,10 +66,7 @@ public class TodoistApiPlugin extends JavaPlugin {
         }
     }
 
-    /**
-     * Инициализация файла конфигурации
-     */
-
+    //Инициализация файла конфигурации
     private void createDefaultConfig() {
         configuration = getConfig();
         configuration.addDefault("API_TOKEN", "insert_your_token_here");
@@ -81,10 +75,7 @@ public class TodoistApiPlugin extends JavaPlugin {
         saveConfig();
     }
 
-    /**
-     * Инициализация команд
-     */
-
+    //Регистрация команд
     public void registerCommands() {
         getCommand("tasks").setExecutor(new DisplayCommand());
     }
