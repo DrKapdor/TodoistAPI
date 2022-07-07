@@ -5,13 +5,13 @@ import java.util.LinkedList;
 
 public class Section {
 
-    private int order;
-    private String name;
-    private LinkedList<Task> tasks;
+    private final int order;
+    private final String name;
+    private final LinkedList<Task> tasks;
 
-    public Section() {
-        order = -1;
-        name = "Unknown section";
+    public Section(int order, String name) {
+        this.order = order;
+        this.name = name;
         tasks = new LinkedList<>();
     }
 
@@ -25,30 +25,12 @@ public class Section {
     }
 
     /**
-     * Установить позицию в списке
-     * @param order Позиция в списке
-     */
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    /**
      * Получить имя секции
      * @return Имя секции
      */
 
     public String getName() {
         return name;
-    }
-
-    /**
-     * Назначить имя секции
-     * @param name Имя секции
-     */
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**

@@ -2,18 +2,18 @@ package me.drkapdor.todoistapi.api;
 
 public class Task {
 
-    private String content;
-    private String description;
-    private int priority;
-    private int order;
-    private int sectionId;
+    private final String content;
+    private final String description;
+    private final int priority;
+    private final int order;
+    private final int sectionId;
 
-    public Task() {
-        content = "Unknown task";
-        description = "No comments";
-        priority = -1;
-        order = -1;
-        sectionId = -1;
+    public Task(String content, String description, int priority, int order, int sectionId) {
+        this.content = content;
+        this.description = description;
+        this.priority = priority;
+        this.order = order;
+        this.sectionId = sectionId;
     }
 
     /**
@@ -26,30 +26,12 @@ public class Task {
     }
 
     /**
-     * Установить имя задачи
-     * @param content Имя задачи
-     */
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    /**
      * Получить описание задачи
      * @return Описание задачи
      */
 
     public String getDescription() {
         return description;
-    }
-
-    /**
-     * Установить описание задачи
-     * @param description Описание задачи
-     */
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
@@ -62,30 +44,12 @@ public class Task {
     }
 
     /**
-     * Установить приоритет задачи
-     * @param priority Приоритет задачи
-     */
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    /**
      * Получить позицию в списке
      * @return Позиция в списке
      */
 
     public int getOrder() {
         return order;
-    }
-
-    /**
-     * Установить позицию в списке
-     * @param order Позиция в списке
-     */
-
-    public void setOrder(int order) {
-        this.order = order;
     }
 
     /**
@@ -97,14 +61,6 @@ public class Task {
         return sectionId;
     }
 
-    /**
-     * Установить идентификатор секции
-     * @param sectionId Идентификатор секции
-     */
-
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
-    }
 
     @Override
     public String toString() {

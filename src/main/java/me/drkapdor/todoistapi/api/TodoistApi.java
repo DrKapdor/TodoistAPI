@@ -1,7 +1,6 @@
 package me.drkapdor.todoistapi.api;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
 import me.drkapdor.todoistapi.TodoistApiPlugin;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ public class TodoistApi {
     private static final String ALL_TASKS = "https://api.todoist.com/rest/v1/tasks";
     private static final String SINGLE_SECTION = "https://api.todoist.com/rest/v1/sections/{id}";
 
-    private static final JsonParser parser = new JsonParser();
+    private static final JsonParser jsonParser = new JsonParser();
 
     private final String token;
 
@@ -42,15 +41,14 @@ public class TodoistApi {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Authorization", "Bearer " + token);
             if (connection.getResponseCode() == 200) {
-                JsonArray response = parser.parse(new InputStreamReader(connection.getInputStream())).getAsJsonArray();
+                JsonArray response = jsonParser.parse(new InputStreamReader(connection.getInputStream())).getAsJsonArray();
                 for (JsonElement element : response) {
                     JsonObject object = element.getAsJsonObject();
-                    Task task = new Task();
-                    task.setContent(object.get("content").getAsString());
-                    task.setDescription(object.get("description").getAsString());
-                    task.setPriority(object.get("priority").getAsInt());
-                    task.setOrder(object.get("order").getAsInt());
-                    task.setSectionId(object.get("section_id").getAsInt());
+                    Task task = new Task(object.get("content").getAsString(),
+                            object.get("description").getAsString(),
+                            object.get("priority").getAsInt(),
+                            object.get("order").getAsInt(),
+                            object.get("section_id").getAsInt());
                     activeTasks.add(task);
                 }
                 activeTasks.sort((a, b) -> b.getPriority() - a.getPriority());
@@ -74,10 +72,9 @@ public class TodoistApi {
                     connection.setRequestProperty("Content-Type", "application/json");
                     connection.setRequestProperty("Authorization", "Bearer " + token);
                     if (connection.getResponseCode() == 200) {
-                        JsonObject response = parser.parse(new InputStreamReader(connection.getInputStream())).getAsJsonObject();
-                        Section section = new Section();
-                        section.setName(response.get("name").getAsString());
-                        section.setOrder(response.get("order").getAsInt());
+                        JsonObject response = jsonParser.parse(new InputStreamReader(connection.getInputStream())).getAsJsonObject();
+                        Section section = new Section(response.get("order").getAsInt(),
+                                response.get("name").getAsString());
                         section.getTasks().add(task);
                         sectionMap.put(task.getSectionId(), section);
                     }
