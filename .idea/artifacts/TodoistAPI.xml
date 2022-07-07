@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="TodoistAPI">
-    <output-path>$USER_HOME$/Рабочий стол/FBServer/plugins</output-path>
-    <root id="archive" name="TodoistAPI.jar">
-      <element id="module-output" name="TodoistAPI" />
-    </root>
-  </artifact>
-</component>
