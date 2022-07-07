@@ -1,4 +1,4 @@
-package me.drkapdor.todoistapi;
+package me.drkapdor.todoistapi.util;
 
 public enum PriorityColor {
 

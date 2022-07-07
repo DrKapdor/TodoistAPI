@@ -4,6 +4,7 @@ import me.drkapdor.todoistapi.api.Section;
 import me.drkapdor.todoistapi.api.Task;
 import me.drkapdor.todoistapi.api.TodoistApi;
 import me.drkapdor.todoistapi.command.DisplayCommand;
+import me.drkapdor.todoistapi.util.PriorityColor;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

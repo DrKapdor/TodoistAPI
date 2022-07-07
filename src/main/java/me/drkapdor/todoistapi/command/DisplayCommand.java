@@ -1,6 +1,6 @@
 package me.drkapdor.todoistapi.command;
 
-import me.drkapdor.todoistapi.PriorityColor;
+import me.drkapdor.todoistapi.util.PriorityColor;
 import me.drkapdor.todoistapi.TodoistApiPlugin;
 import me.drkapdor.todoistapi.api.Section;
 import me.drkapdor.todoistapi.api.Task;
